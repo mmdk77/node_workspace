@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>JSON 표기법 학습</title>
+
+	<script>
+	//프로그램 로직에 사용되는 객체와는 목적이 다르므로 데이터를 담는 용도로만 사용된다.
+	/*{
+		"name":"반장",
+		"age":31,
+		"isMarry":false,
+		"pets":[
+			{
+			"pettype":"말티즈",
+			"age":23,
+			"isMan":false
+			},
+			{
+			"pettype":"말티즈",
+			"age":23,
+			"isMan":false
+			},
+			{
+			"pettype":"말티즈",
+			"age":23,
+			"isMan":false
+			}
+		]
+	}*/
+		var data = "";
+
+		data =data +	"{";
+		data =data +	" \"제품수\" : 3,";
+		data =data +	"\"원산지\" : \"한국\",";
+		data =data +	"\"제품\" :[";
+		data =data +	"{";
+		data =data +	"\"제품명\" : \"세탁기\",";
+		data =data +	"\"제조사\" : \"삼성\",";
+		data =data +	"\"가격\" : \"50만원\",";
+		data =data +	"\"절전기능\" : true";
+				
+		data =data +	"},";
+		data =data +	"{";
+		data =data +	"\"제품명\" : \"냉장고\",";
+		data =data +	"\"제조사\" : \"LG\",";
+		data =data +	"\"가격\" : \"200만원\",";
+		data =data +	"\"절전기능\" : false";
+				
+		data =data +	"},";
+		data =data +	"{";
+		data =data +	"\"제품명\" : \"TV\",";
+		data =data +	"\"제조사\" : \"삼성\",";
+		data =data +	"\"가격\" : \"400만원\",";
+		data =data +	"\"절전기능\" : true";
+				
+		data =data +	"}";
+		data =data +	"]";
+		data =data +	"}";
+
+		//document.write(data);
+
+		var obj = JSON.parse(data);// String의 불과한 데이터를 객체화 시킴.
+	
+		//document.write(obj.원산지);
+		/*String 데이터를 대상으로 JSON 객체화시키면, 
+		객체취급이 가능하므로 객체지향 언어의 코드방식의 속성에 접근방법이 가능.*/
+
+		var list = obj.제품목록;
+		
+		for(var i=0;i<list.length;i++){
+			document.write(list[i].제품명+"<br>");
+		}
+		
+
+		document.write(obj.제품명);
+	</script>
+
+</head>
+<body>
+
+</body>
+</html>
