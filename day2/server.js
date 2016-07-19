@@ -75,19 +75,18 @@ app.route("/regist").post(function(request, response){
 	var pwd = data.pwd; 
 	var name =data.name;
 
-	console.log("ID=>>"+id);
-	console.log("Password=>>"+pwd);
-	console.log("Name=>>"+name);
+	//console.log("ID=>>"+id);
+	//console.log("Password=>>"+pwd);
+	//console.log("Name=>>"+name);
 
 	//받은 데이터를 데이터베이스에 넣기.
 	client.query("insert into student(id,pwd,name) values('"+id+"','"+pwd+"','"+name+"')",function(error,records,field){ //성공 & 실패 여부 확인.
-		if(error){
-			console.log("등록실패");
-		}else{
+		if(!error){
 			console.log("등록성공");
-
 			//리스트 페이지에 대한 요청.
 			response.redirect("/list");
+		}else{		
+			console.log("등록실패");
 		}
 	
 	});
@@ -107,8 +106,21 @@ app.route("/detail/:id").get(function(request, response){
 			console.log("이거슨 찾을수없는 것");
 		}
 	});
-	
-	
+});
+
+//삭제요청
+app.route("/detail/:id").get(function(request, response){
+	var id = request.parms.id;
+	console.log("유저가 삭제할 ID>>>>"+request.params.id);
+	client.query("delet from student where id=''"+id+"",function(error){
+		if(!error){
+
+			response.redirect("/list");
+		}else{
+			console.log("이거슨 삭제 할수가 없는 것");	
+		}
+		
+	});
 });
 
 //서버구동시작
